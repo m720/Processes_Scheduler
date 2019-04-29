@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProcessesEnterDataController">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Pane fx:id="ProcessesNumberPane" minHeight="500.0" minWidth="300.0" prefHeight="500.0" prefWidth="300.0">
+         <children>
+            <Button layoutX="124.0" layoutY="282.0" mnemonicParsing="false" onAction="#EnterProcessesNumber" text="Enter" />
+            <Label layoutX="74.0" layoutY="213.0" text="Enter the Number of Process" />
+            <TextField fx:id="ProcessesNumberTextField" layoutX="76.0" layoutY="238.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="ProcessesEnterDetailsPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" visible="false">
+         <children>
+
+            <TextField fx:id="ArrivalTimeTextField" layoutX="89.0" layoutY="180.0" prefHeight="25.0" prefWidth="122.0" promptText="Arrival time" />
+            <TextField fx:id="BurstTimeTextField" layoutX="90.0" layoutY="219.0" prefHeight="25.0" prefWidth="122.0" promptText="Burst time" />
+            <TextField fx:id="PriorityTextField" layoutX="89.0" layoutY="253.0" prefHeight="25.0" prefWidth="122.0" promptText="Priority" />
+            <Button fx:id="OKButton" layoutX="113.0" layoutY="308.0" mnemonicParsing="false" onAction="#OKClick" prefHeight="25.0" prefWidth="74.0" text="Ok" visible="false" />
+             <Button fx:id="NextButton" layoutX="211.0" layoutY="308.0" mnemonicParsing="false" onAction="#nextClick" prefHeight="25.0" prefWidth="74.0" text="Next" />
+            <Label fx:id="ProcessEnterDataLabel" layoutX="89.0" layoutY="117.0" prefHeight="45.0" prefWidth="122.0" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="21.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane fx:id="ProcessShowDataPane" prefHeight="200.0" prefWidth="500.0" visible="false">
+         <children>
+            <HBox fx:id="GanttChart" layoutX="137.0" layoutY="71.0" prefHeight="54.0" prefWidth="200.0" />
+            <TableView fx:id="resultTable" layoutX="6.0" layoutY="158.0" prefHeight="200.0" prefWidth="493.0">
+              <columns>
+                  <TableColumn fx:id="processNumberCol" prefWidth="106.0" text="Process Number" />
+                <TableColumn fx:id="startTimeCol" prefWidth="81.0" text="Start Time" />
+                <TableColumn fx:id="watingTimeCol" prefWidth="101.0" text="Waiting Time" />
+                  <TableColumn fx:id="turnAroundTimeCol" prefWidth="110.0" text="Turn Around Time" />
+                  <TableColumn fx:id="responseTimeCol" minWidth="8.0" prefWidth="94.0" text="Response Time" />
+              </columns>
+            </TableView>
+            <Label layoutX="47.0" layoutY="367.0" text="Avg" />
+            <Label layoutX="127.0" layoutY="367.0" text="Avg" />
+            <Label layoutX="227.0" layoutY="367.0" text="Avg" />
+            <Label layoutX="327.0" layoutY="367.0" text="Avg" />
+            <Label layoutX="436.0" layoutY="367.0" text="Avg" />
+         </children></Pane>
+   </children>
+</GridPane>
