@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 
 import java.awt.*;
 import java.lang.reflect.Array;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -39,15 +40,20 @@ public class ProcessesEnterDataController {
     //for Showing DataPane
     public HBox GanttChart;
     public HBox TimeAxis;
+    static int Time;
+
+    public Label WaitingTimeAVG;
+    public Label TurnAroundAVG;
+    public Label ResponseTimeAVG;
 
 
     //setting up the Table
     public TableView resultTable;
-    public TableColumn<Process,String> responseTimeCol;
-    public TableColumn<Process,String> watingTimeCol;
-    public TableColumn<Process,String> turnAroundTimeCol;
-    public TableColumn<Process,String> startTimeCol;
-    public TableColumn<Process,String> processNumberCol;
+    public TableColumn responseTimeCol;
+    public TableColumn watingTimeCol;
+    public TableColumn turnAroundTimeCol;
+    public TableColumn startTimeCol;
+    public TableColumn processNumberCol;
 
 
 
@@ -171,6 +177,8 @@ public class ProcessesEnterDataController {
 
 
       //for Table
+      resultTable.setEditable(true);
+
       responseTimeCol = new TableColumn("Response Time");
       responseTimeCol.setCellValueFactory(new PropertyValueFactory<Process,String>("response_time"));
 
@@ -185,7 +193,7 @@ public class ProcessesEnterDataController {
 
       processNumberCol =new TableColumn("Process Number");
       processNumberCol.setCellValueFactory(new PropertyValueFactory<Process,String>("process_number"));
-      resultTable.getColumns().addAll(responseTimeCol, watingTimeCol  ,turnAroundTimeCol , startTimeCol ,processNumberCol);
+      resultTable.getColumns().addAll(processNumberCol , watingTimeCol  ,turnAroundTimeCol , startTimeCol, responseTimeCol );
 
 
       ObservableList <Process> observableList =  FXCollections.observableArrayList();
@@ -202,21 +210,16 @@ public class ProcessesEnterDataController {
 
       //time Axis
 
-      for(int i =0 ;i<Processes.get(Processes.size()).ending_time;i++){
-          Label l = new Label(Integer.toString(i));
-          l.setMinWidth(10);
-          l.setMinHeight(17);
-          TimeAxis.getChildren().add(l);
-      }
 
-      int Time = 0;
+
+      Time = 0;
       for (int i=0;i<EnteredNumber;i++){
         Process p = Processes.get(i);
 
                 while (Time<p.start_time){
                 Label l = new Label("*");
                 l.setMinHeight(80);
-                l.setMinWidth(10);
+                l.setMinWidth(17);
                 GanttChart.getChildren().add(l);
                 Time+=1;
             }
@@ -225,13 +228,30 @@ public class ProcessesEnterDataController {
           for (int j  =0 ;j<seconds;j++){
               Label l = new Label(Integer.toString(p.process_number));
               l.setMinHeight(80);
-              l.setMinWidth(10);
+              l.setMinWidth(17);
+              l.setStyle("-fx-border-color: black;");
               l.setBackground(new Background(new BackgroundFill(colors.get(i%4) , CornerRadii.EMPTY , Insets.EMPTY)));
               GanttChart.getChildren().add(l);
               Time+=1;
           }
 
       }
+      for(int i =0 ;i<Processes.get(Processes.size()-1).ending_time;i++){
+          Label l = new Label(Integer.toString(i));
+          l.setMinWidth(17);
+          l.setMinHeight(17);
+          l.setStyle("-fx-border-color: black;");
+          TimeAxis.getChildren().add(l);
+      }
+
+      //setting up the AVG
+         WaitingTimeAVG.setText(Integer.toString(OsProject.avarage_waiting_time));
+         TurnAroundAVG.setText(Integer.toString(OsProject.avarage_turnaround_time));
+         ResponseTimeAVG.setText(Integer.toString(OsProject.avarage_response_time));
+
+
+
+
      }
   }
 

@@ -43,13 +43,12 @@
       <Pane fx:id="ProcessShowDataPane" prefHeight="200.0" prefWidth="500.0" visible="false">
          <children>
             <HBox fx:id="GanttChart" layoutX="137.0" layoutY="71.0" prefHeight="54.0" prefWidth="200.0" />
-            <HBox fx:id="TimeAxis" layoutX="137.0" layoutY="160.0" prefHeight="17.0" prefWidth="200.0" />
+            <HBox fx:id="TimeAxis" layoutX="137.0" layoutY="150.0" prefHeight="32.0" prefWidth="266.0" />
             <TableView fx:id="resultTable" layoutX="6.0" layoutY="180.0" prefHeight="200.0" prefWidth="493.0" />
             <Label layoutX="47.0" layoutY="385.0" text="Avg" />
-            <Label layoutX="127.0" layoutY="385.0" text="Avg" />
-            <Label layoutX="227.0" layoutY="385.0" text="Avg" />
-            <Label layoutX="327.0" layoutY="385.0" text="Avg" />
-            <Label layoutX="436.0" layoutY="385.0" text="Avg" />
+            <Label fx:id="WaitingTimeAVG" layoutX="127.0" layoutY="385.0" text="Avg" />
+            <Label fx:id="TurnAroundAVG" layoutX="227.0" layoutY="385.0" text="Avg" />
+            <Label fx:id="ResponseTimeAVG" layoutX="436.0" layoutY="385.0" text="Avg"  />
          </children></Pane>
    </children>
 </GridPane>
